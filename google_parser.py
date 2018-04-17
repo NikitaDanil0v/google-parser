@@ -2,17 +2,19 @@ import requests
 from bs4 import BeautifulSoup as bs
 from python3_anticaptcha import NoCaptchaTaskProxyless
 
+names = open("./influencers.txt").read().split("\n")
+
 class GoogleParser():
 
     def __init__(self):
         self.ANTICAPTCHA_KEY = ""
-        self.names = None
+        self.names = names
         self.services = ["facebook.com", "youtube.com", "twitter.com", "linkedin.com"]
         self.headers = {}
 
-    def writeData(self, name, type, text):
+    def writeData(self, name, type	, text):
         f = open("./data.txt", "a")
-        f.write("{}\t{}\t{}\n".format(name, type, text))
+        f.write("{}|{}|{}\n".format(name, type, text))
         f.close()
 
     def checkCaptcha(self, input):
